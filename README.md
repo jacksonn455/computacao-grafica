@@ -8,4 +8,5 @@ Computação Gráfica
 --------------------
 
 --------------------
-![](https://github.com/jacksonn455/Arvores-de-Decisao/blob/master/img3.png)
+![](https://github.com/jacksonn455/computacao-grafica/blob/master/img2.png)
+![](https://github.com/jacksonn455/computacao-grafica/blob/master/img1.jpg)
