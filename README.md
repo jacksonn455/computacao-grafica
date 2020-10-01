@@ -8,6 +8,7 @@ Computação Gráfica
 --------------------
 
 - Adicionar sangue a parede e ao boneco / https://www.cleanpng.com/free/blood-texture.html / https://www.cleanpng.com/free/blood-texture.html
+- Parede castelo: https://www.transparentpng.com/details/blood-splatter-free-pictures_14074.html
 
 --------------------
 ![](https://github.com/jacksonn455/computacao-grafica/blob/master/img2.png)
