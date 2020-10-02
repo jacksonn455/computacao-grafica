@@ -121,6 +121,13 @@ bool CSceneManager::InitGL(void)
 	//glEnable(GL_CULL_FACE);
 
 	SetVSync(true);		// Habilita ou desabilita sincronização vertical (VSYNC)
+
+	//Ativar GLEW
+	GLenum err = glewInit();
+	if (GLEW_OK != err) {
+		MessageBox(NULL, NULL, "GLEW ERROR", MB_OK | MB_ICONINFORMATION);
+		exit(-1);
+	}
 	
 	return true;
 }

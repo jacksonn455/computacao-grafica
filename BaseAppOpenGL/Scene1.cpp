@@ -27,6 +27,7 @@ CScene1::CScene1()
 	pTexture->CreateTextureLinear(2, "../Scene1/floorSnow.jpg");
 	pTexture->CreateTextureMipMap(3, "../Scene1/neve.bmp");
 	pTexture->CreateTextureMipMap(4, "../Scene1/door.jpg");
+	pTexture->CreateTextureMipMap(5, "../Scene1/sangue1.png");
 
 
 	// Cria o Timer
@@ -186,7 +187,8 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 
 	glColor3f(1.0, 1.0, 1.0); // Define a cor atual
 
-	// Desenha o gramadoglPushMatrix();
+	// Desenha a neve 
+	glPushMatrix();
 		pTexture->ApplyTexture(3); // Define a textura atual
 		glBegin(GL_QUADS);
 			glNormal3f(0.0f, 1.0f, 0.0f);
@@ -199,12 +201,25 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 	// DESENHA O FOSSO
 	DrawCube(0.0f, 0.5f, 0.0f,
 		0.0f, 0.0f, 0.0f, 0.0f,
-		70.0f, 0.0f, 70.0f,
+		75.0f, 0.0f, 75.0f,
 		1);
+
 	// DESENHA A BASE
 	DrawCube(0.0f, 1.0f, 0.0f,
 		0.0f, 0.0f, 0.0f, 0.0f,
 		50.0f, 1.5f, 50.0f,
+		0);
+
+	// DESENHA A TETO
+	DrawCube(0.0f, 15.0f, 0.0f,
+		0.0f, 0.0f, 0.0f, 0.0f,
+		40.0f, 10.0f, 35.0f,
+		0);
+
+	// DESENHA A PONTE
+	DrawCube(0.0f, 1.0f, 7.8f,
+		0.0f, 0.0f, 0.0f, 0.0f,
+		10.0f, 0.5f, 60.0f,
 		0);
 	
 	// DESENHA AS PAREDES
