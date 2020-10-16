@@ -172,8 +172,8 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 	if (fAngle >= 360.0f)
 		fAngle = 0.0f;
 	// Define o material para reflexão do objeto
-// O material é aplicado na superfície do objeto, e define quanto
-// o objeto irá absorver ou refletir da luz
+	// O material é aplicado na superfície do objeto, e define quanto
+	// o objeto irá absorver ou refletir da luz
 	MatAmbient[0] = 0.0f;	MatAmbient[1] = 0.0f;	MatAmbient[2] = 0.0f;	MatAmbient[3] = 50.0f;
 	MatDiffuse[0] = 50.0f;	MatDiffuse[1] = 50.0f;	MatDiffuse[2] = 50.0f;	MatDiffuse[3] = 50.0f;
 	MatSpecular[0] = 0.0f;	MatSpecular[1] = 0.0f;	MatSpecular[2] = 0.0f;	MatSpecular[3] = 50.0f;
@@ -198,6 +198,11 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 			glTexCoord2d(0.0f, 2.0f); glVertex3f(-60.0f, 0.0f, -60.0f);
 		glEnd();
 	glPopMatrix();
+
+	//BONECO
+	DrawSnowMan(0.0f, 0.0, 0.0, 10);
+
+
 	// DESENHA O FOSSO
 	DrawCube(0.0f, 0.5f, 0.0f,
 		0.0f, 0.0f, 0.0f, 0.0f,
@@ -239,6 +244,29 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 		0.0f, 0.0f, 0.0f, 0.0f,
 		30.0, 20.0, 2.0,
 		2);
+
+	// MURALHA
+	DrawCube(-59.0f, 20.3f, 0.0f,
+		0.0f, 0.0f, 0.0f, 0.0f,
+		2.0, 40.0, 118.0,
+		2);
+	DrawCube(59.0f, 20.3f, 0.0f,
+		0.0f, 0.0f, 0.0f, 0.0f,
+		2.0, 40.0, 118.0,
+		2);
+	DrawCube(0.0f, 20.3f, -59.0f,
+		0.0f, 0.0f, 0.0f, 0.0f,
+		118.0, 40.0, 2.0,
+		2);
+	DrawCube(40.0f, 20.3f, 59.0f,
+		0.0f, 0.0f, 0.0f, 0.0f,
+		40, 40.0, 2.0,
+		2);
+	DrawCube(-40.0f, 20.3f, 59.0f,
+		0.0f, 0.0f, 0.0f, 0.0f,
+		40, 40.0, 2.0,
+		2);
+
 	// TORRE
 	glPushMatrix();
 		glTranslatef(20, -8.5f, 20);
@@ -260,11 +288,19 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 		glRotatef(-90, 1, 0, 0);
 		DrawCylinder(1, 16, 22, 5);
 	glPopMatrix();
+
+	//PORTÃO
+	DrawCube(0.0f, 20.3f, 59.0f,
+		0.0f, 0.0f, 0.0f, 0.0f,
+		40.0, 40.0, 1,
+		4);
+
 	// PORTA
 	DrawCube(0.0f, 6.5f, 21.0f,
 		0.0f, 0.0f, 0.0f, 0.0f,
 		8.0, 12.0, 0.5,
 		4);
+
 	// ARVORE
 	glPushMatrix();
 		glTranslatef(-40, -4.0f, -10);
@@ -272,7 +308,7 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 		DrawCylinder(1, 16, 8, 1);
 	glPopMatrix();
 	glPushMatrix();
-		glTranslatef(-40, 2, -10);
+		glTranslatef(-40, 8, -10);
 		glRotatef(-90, 1, 0, 0);
 		glColor3f(0, 128, 0);
 		auxSolidCone(4, 10);
@@ -280,12 +316,12 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 
 	glPushMatrix();
 		glColor3f(75, 54, 33);
-		glTranslatef(55, -4.0f, -10);
+		glTranslatef(45, -4.0f, -10);
 		glRotatef(-90, 1, 0, 0);
 		DrawCylinder(1, 16, 8, 1);
 	glPopMatrix();
 	glPushMatrix();
-		glTranslatef(55, 2, -10);
+		glTranslatef(45, 8, -10);
 		glRotatef(-90, 1, 0, 0);
 		glColor3f(0, 128, 0);
 		auxSolidCone(4, 10);
@@ -298,49 +334,40 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 		DrawCylinder(1, 16, 8, 1);
 	glPopMatrix();
 	glPushMatrix();
-		glTranslatef(45, 2, 25);
+		glTranslatef(45, 8, 25);
 		glRotatef(-90, 1, 0, 0);
 		glColor3f(0, 128, 0);
 		auxSolidCone(4, 10);
 	glPopMatrix();
 
-	//BONECO
-	DrawSnowMan(0.0f, 0.0, 0.0, 10);
-
 	// CHAPEU TORRE
 	glPushMatrix();
 		glTranslatef(20, 24.5, 20);
 		glRotatef(-90, 1, 0, 0);
-		glColor3ub(200, 254, 232);
+		glColor3ub(10, 10, 10);
 		auxSolidCone(6, 10);
 	glPopMatrix();
 	glPushMatrix();
 		glTranslatef(-20, 24.5, 20);
 		glRotatef(-90, 1, 0, 0);
-		glColor3ub(200, 254, 232);
+		glColor3ub(10, 10, 10);
 		auxSolidCone(6, 10);
 	glPopMatrix();
 	glPushMatrix();
 		glTranslatef(20, 24.5, -20);
 		glRotatef(-90, 1, 0, 0);
-		glColor3ub(200, 254, 232);
+		glColor3ub(10, 10, 10);
 		auxSolidCone(6, 10);
 	glPopMatrix();
 	glPushMatrix();
 		glTranslatef(-20, 24.5, -20);
 		glRotatef(-90, 1, 0, 0);
-		glColor3ub(200, 254, 232);
+		glColor3ub(10, 10, 10);
 		auxSolidCone(6, 10);
 	glPopMatrix();
 
-	
-
-
-	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_LIGHT0);	// Desliga a lâmpada
 	glDisable(GL_LIGHTING);	// Desabilita iluminação
-
-
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//                               DESENHA OS OBJETOS DA CENA (FIM)
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -881,10 +908,10 @@ Vec3 CScene1::CalculateTriangleNormalVector(Vec3 v1, Vec3 v2, Vec3 v3)
 void CScene1::DrawSnowMan(float rot, float pX, float pY, float pZ)
 {
 	glPushMatrix();
-	glTranslatef(-50, 4.0f, 40);
+	glTranslatef(-50, 5.0f, 30);
 	glRotatef(360, 1, 0, 0);
 
-	glColor3ub(200, 254, 232);
+	glColor3ub(255, 255, 255);
 	glPushMatrix();
 
 	//PERNAS
@@ -897,7 +924,7 @@ void CScene1::DrawSnowMan(float rot, float pX, float pY, float pZ)
 
 	//BOTOES DA CAMISA
 	glPushMatrix();
-	glColor3f(1.0f, 0.0f, 0.0f);
+	glColor3f(1.0f, 0.0f, 0.9f);
 	glTranslatef(0.0f, 1.0f, 3.0f);
 	auxSolidSphere(0.5);
 
