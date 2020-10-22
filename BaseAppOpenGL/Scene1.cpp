@@ -366,6 +366,15 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 		auxSolidCone(6, 10);
 	glPopMatrix();
 
+	//telhado castelo
+
+	glPushMatrix();
+		glTranslatef(-2, 22, 0);
+		glRotatef(-90, 1, 0, 0);
+		glColor3ub(10, 10, 10);
+		auxSolidCone(20, 25);
+	glPopMatrix();
+
 	glDisable(GL_LIGHT0);	// Desliga a lâmpada
 	glDisable(GL_LIGHTING);	// Desabilita iluminação
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
