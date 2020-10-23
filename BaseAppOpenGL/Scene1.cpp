@@ -18,7 +18,7 @@ CScene1::CScene1()
 	pTexto = new CTexto();
 
 	// Cria camera
-	pCamera = new CCamera(0.0f, 1.0f, 20.0f);
+	pCamera = new CCamera(0.0f, 20.0f, 45.0f);
 
 	// Cria gerenciador de mapeamento de texturas
 	pTexture = new CTexture();
@@ -65,10 +65,10 @@ CScene1::CScene1()
 	LightSpecular[2] = 1.0f;
 	LightSpecular[3] = 1.0f;
 
-	LightPosition[0] = 0.0f;
-	LightPosition[1] = 0.0f;
-	LightPosition[2] = 0.0f;
-	LightPosition[3] = 1.0f;
+	LightPosition[0] = 0.3f;
+	LightPosition[1] = 0.3f;
+	LightPosition[2] = 0.3f;
+	LightPosition[3] = 0.29f;
 
 
 	// Cria um display list
@@ -112,7 +112,7 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 {
 	// Cilindro & Cone
 	GLUquadricObj* quadObj = gluNewQuadric();
-	
+
 	// Get FPS
 	if (GetTickCount() - ulLastFPS >= 1000)	// When A Second Has Passed...
 	{
@@ -153,9 +153,9 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 
 	// Desenha a lâmpada
 	glColor3f(1.0f, 1.0f, 1.0f);
-		glPushMatrix();
-		glTranslatef(LightPosition[0], LightPosition[1], LightPosition[2]);
-		glutSolidSphere(0.2f, 5, 5);
+	glPushMatrix();
+	glTranslatef(LightPosition[0], LightPosition[1], LightPosition[2]);
+	glutSolidSphere(0.2f, 5, 5);
 	glPopMatrix();
 
 	glEnable(GL_LIGHTING);	// Habilita iluminação
@@ -178,10 +178,11 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 	MatDiffuse[0] = 50.0f;	MatDiffuse[1] = 50.0f;	MatDiffuse[2] = 50.0f;	MatDiffuse[3] = 50.0f;
 	MatSpecular[0] = 0.0f;	MatSpecular[1] = 0.0f;	MatSpecular[2] = 0.0f;	MatSpecular[3] = 50.0f;
 
-	glMaterialfv(GL_FRONT, GL_AMBIENT, MatAmbient);
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, MatDiffuse);
-	glMaterialfv(GL_FRONT, GL_SPECULAR, MatSpecular);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, MatAmbient);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, MatDiffuse);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, MatSpecular);
 	glMateriali(GL_FRONT, GL_SHININESS, 128);
+
 
 	glEnable(GL_TEXTURE_2D);
 
@@ -189,19 +190,18 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 
 	// Desenha a neve 
 	glPushMatrix();
-		pTexture->ApplyTexture(3); // Define a textura atual
-		glBegin(GL_QUADS);
-			glNormal3f(0.0f, 1.0f, 0.0f);
-			glTexCoord2d(0.0f, 0.0f); glVertex3f(-60.0f, 0.0f, 60.0f);
-			glTexCoord2d(2.0f, 0.0f); glVertex3f(60.0f, 0.0f, 60.0f);
-			glTexCoord2d(2.0f, 2.0f); glVertex3f(60.0f, 0.0f, -60.0f);
-			glTexCoord2d(0.0f, 2.0f); glVertex3f(-60.0f, 0.0f, -60.0f);
-		glEnd();
+	pTexture->ApplyTexture(3); // Define a textura atual
+	glBegin(GL_QUADS);
+	glNormal3f(0.0f, 1.0f, 0.0f);
+	glTexCoord2d(0.0f, 0.0f); glVertex3f(-100.0f, 0.0f, 100.0f);
+	glTexCoord2d(2.0f, 0.0f); glVertex3f(100.0f, 0.0f, 100.0f);
+	glTexCoord2d(2.0f, 2.0f); glVertex3f(100.0f, 0.0f, -100.0f);
+	glTexCoord2d(0.0f, 2.0f); glVertex3f(-100.0f, 0.0f, -100.0f);
+	glEnd();
 	glPopMatrix();
 
 	//BONECO
 	DrawSnowMan(0.0f, 0.0, 0.0, 10);
-
 
 	// DESENHA O FOSSO
 	DrawCube(0.0f, 0.5f, 0.0f,
@@ -215,6 +215,7 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 		50.0f, 1.5f, 50.0f,
 		0);
 
+
 	// DESENHA A TETO
 	DrawCube(0.0f, 15.0f, 0.0f,
 		0.0f, 0.0f, 0.0f, 0.0f,
@@ -226,7 +227,7 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 		0.0f, 0.0f, 0.0f, 0.0f,
 		10.0f, 0.5f, 60.0f,
 		0);
-	
+
 	// DESENHA AS PAREDES
 	DrawCube(-20.0f, 10.5f, 0.0f,
 		0.0f, 0.0f, 0.0f, 0.0f,
@@ -246,51 +247,51 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 		2);
 
 	// MURALHA
-	DrawCube(-59.0f, 20.3f, 0.0f,
+	DrawCube(-79.0f, 20.3f, 0.0f,
 		0.0f, 0.0f, 0.0f, 0.0f,
-		2.0, 40.0, 118.0,
+		2.0, 40.0, 157.0,
 		2);
-	DrawCube(59.0f, 20.3f, 0.0f,
+	DrawCube(79.0f, 20.3f, 0.0f,
 		0.0f, 0.0f, 0.0f, 0.0f,
-		2.0, 40.0, 118.0,
+		2.0, 40.0, 157.0,
 		2);
-	DrawCube(0.0f, 20.3f, -59.0f,
+	DrawCube(0.0f, 20.3f, -79.0f,
 		0.0f, 0.0f, 0.0f, 0.0f,
-		118.0, 40.0, 2.0,
+		157.0, 40.0, 2.0,
 		2);
-	DrawCube(40.0f, 20.3f, 59.0f,
+	DrawCube(50.0f, 20.3f, 79.0f,
 		0.0f, 0.0f, 0.0f, 0.0f,
-		40, 40.0, 2.0,
+		60, 40.0, 2.0,
 		2);
-	DrawCube(-40.0f, 20.3f, 59.0f,
+	DrawCube(-50.0f, 20.3f, 79.0f,
 		0.0f, 0.0f, 0.0f, 0.0f,
-		40, 40.0, 2.0,
+		60, 40.0, 2.0,
 		2);
 
 	// TORRE
 	glPushMatrix();
-		glTranslatef(20, -8.5f, 20);
-		glRotatef(-90, 1, 0, 0);
-		DrawCylinder(1, 16, 22, 5);
-		glPopMatrix();
-	glPushMatrix();
-		glTranslatef(-20, -8.5f, 20);
-		glRotatef(-90, 1, 0, 0);
-		DrawCylinder(1, 16, 22, 5);
+	glTranslatef(20, -8.5f, 20);
+	glRotatef(-90, 1, 0, 0);
+	DrawCylinder(1, 16, 22, 5);
 	glPopMatrix();
 	glPushMatrix();
-		glTranslatef(20, -8.5f, -20);
-		glRotatef(-90, 1, 0, 0);
-		DrawCylinder(1, 16, 22, 5);
+	glTranslatef(-20, -8.5f, 20);
+	glRotatef(-90, 1, 0, 0);
+	DrawCylinder(1, 16, 22, 5);
 	glPopMatrix();
 	glPushMatrix();
-		glTranslatef(-20, -8.5f, -20);
-		glRotatef(-90, 1, 0, 0);
-		DrawCylinder(1, 16, 22, 5);
+	glTranslatef(20, -8.5f, -20);
+	glRotatef(-90, 1, 0, 0);
+	DrawCylinder(1, 16, 22, 5);
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-20, -8.5f, -20);
+	glRotatef(-90, 1, 0, 0);
+	DrawCylinder(1, 16, 22, 5);
 	glPopMatrix();
 
 	//PORTÃO
-	DrawCube(0.0f, 20.3f, 59.0f,
+	DrawCube(0.0f, 20.3f, 79.0f,
 		0.0f, 0.0f, 0.0f, 0.0f,
 		40.0, 40.0, 1,
 		4);
@@ -303,80 +304,83 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 
 	// ARVORE
 	glPushMatrix();
-		glTranslatef(-40, -4.0f, -10);
-		glRotatef(-90, 1, 0, 0);
-		DrawCylinder(1, 16, 8, 1);
+	glTranslatef(-40, -4.0f, -10);
+	glRotatef(-90, 1, 0, 0);
+	DrawCylinder(1, 16, 8, 1);
 	glPopMatrix();
 	glPushMatrix();
-		glTranslatef(-40, 8, -10);
-		glRotatef(-90, 1, 0, 0);
-		glColor3f(0, 128, 0);
-		auxSolidCone(4, 10);
-	glPopMatrix();
-
-	glPushMatrix();
-		glColor3f(75, 54, 33);
-		glTranslatef(45, -4.0f, -10);
-		glRotatef(-90, 1, 0, 0);
-		DrawCylinder(1, 16, 8, 1);
-	glPopMatrix();
-	glPushMatrix();
-		glTranslatef(45, 8, -10);
-		glRotatef(-90, 1, 0, 0);
-		glColor3f(0, 128, 0);
-		auxSolidCone(4, 10);
+	glTranslatef(-40, 8, -10);
+	glRotatef(-90, 1, 0, 0);
+	glColor3f(0, 128, 0);
+	auxSolidCone(4, 10);
 	glPopMatrix();
 
 	glPushMatrix();
-		glColor3f(75, 54, 33);
-		glTranslatef(45, -4.0f, 25);
-		glRotatef(-90, 1, 0, 0);
-		DrawCylinder(1, 16, 8, 1);
+	glColor3f(75, 54, 33);
+	glTranslatef(45, -4.0f, -10);
+	glRotatef(-90, 1, 0, 0);
+	DrawCylinder(1, 16, 8, 1);
 	glPopMatrix();
 	glPushMatrix();
-		glTranslatef(45, 8, 25);
-		glRotatef(-90, 1, 0, 0);
-		glColor3f(0, 128, 0);
-		auxSolidCone(4, 10);
+	glTranslatef(45, 8, -10);
+	glRotatef(-90, 1, 0, 0);
+	glColor3f(0, 128, 0);
+	auxSolidCone(4, 10);
+	glPopMatrix();
+
+	glPushMatrix();
+	glColor3f(75, 54, 33);
+	glTranslatef(45, -4.0f, 25);
+	glRotatef(-90, 1, 0, 0);
+	DrawCylinder(1, 16, 8, 1);
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(45, 8, 25);
+	glRotatef(-90, 1, 0, 0);
+	glColor3f(0, 128, 0);
+	auxSolidCone(4, 10);
 	glPopMatrix();
 
 	// CHAPEU TORRE
 	glPushMatrix();
-		glTranslatef(20, 24.5, 20);
-		glRotatef(-90, 1, 0, 0);
-		glColor3ub(10, 10, 10);
-		auxSolidCone(6, 10);
+	glTranslatef(20, 24.5, 20);
+	glRotatef(-90, 1, 0, 0);
+	glColor3ub(10, 10, 10);
+	auxSolidCone(6, 10);
 	glPopMatrix();
 	glPushMatrix();
-		glTranslatef(-20, 24.5, 20);
-		glRotatef(-90, 1, 0, 0);
-		glColor3ub(10, 10, 10);
-		auxSolidCone(6, 10);
+	glTranslatef(-20, 24.5, 20);
+	glRotatef(-90, 1, 0, 0);
+	glColor3ub(10, 10, 10);
+	auxSolidCone(6, 10);
 	glPopMatrix();
 	glPushMatrix();
-		glTranslatef(20, 24.5, -20);
-		glRotatef(-90, 1, 0, 0);
-		glColor3ub(10, 10, 10);
-		auxSolidCone(6, 10);
+	glTranslatef(20, 24.5, -20);
+	glRotatef(-90, 1, 0, 0);
+	glColor3ub(10, 10, 10);
+	auxSolidCone(6, 10);
 	glPopMatrix();
 	glPushMatrix();
-		glTranslatef(-20, 24.5, -20);
-		glRotatef(-90, 1, 0, 0);
-		glColor3ub(10, 10, 10);
-		auxSolidCone(6, 10);
+	glTranslatef(-20, 24.5, -20);
+	glRotatef(-90, 1, 0, 0);
+	glColor3ub(10, 10, 10);
+	auxSolidCone(6, 10);
 	glPopMatrix();
 
 	//telhado castelo
-
 	glPushMatrix();
-		glTranslatef(-2, 22, 0);
-		glRotatef(-90, 1, 0, 0);
-		glColor3ub(10, 10, 10);
-		auxSolidCone(20, 25);
+	glTranslatef(0, 20.5, 0);
+	glRotatef(-90, 1, 0, 0);
+	glColor3ub(10, 10, 10);
+	auxSolidCone(21, 23);
 	glPopMatrix();
+
+	//BONECO
+	DrawSnowMan(0.0f, 0.0, 0.0, 10);
 
 	glDisable(GL_LIGHT0);	// Desliga a lâmpada
 	glDisable(GL_LIGHTING);	// Desabilita iluminação
+
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//                               DESENHA OS OBJETOS DA CENA (FIM)
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -596,16 +600,16 @@ void CScene1::DrawCube(float pX, float pY, float pZ,
 	glBegin(GL_QUADS);
 	// face frente
 	glTexCoord2d(0.0f, 0.0f); glVertex3f(-0.5f, -0.5f, 0.5f);
-	glTexCoord2d(1.0f, 0.0f); glVertex3f( 0.5f, -0.5f, 0.5f);
-	glTexCoord2d(1.0f, 1.0f); glVertex3f( 0.5f,  0.5f, 0.5f);
-	glTexCoord2d(0.0f, 1.0f); glVertex3f(-0.5f,  0.5f, 0.5f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(0.5f, -0.5f, 0.5f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(0.5f, 0.5f, 0.5f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(-0.5f, 0.5f, 0.5f);
 
 	// face trás
 	glTexCoord2d(0.0f, 0.0f); glVertex3f(0.5f, -0.5f, -0.5f);
 	glTexCoord2d(0.0f, 1.0f); glVertex3f(-0.5f, -0.5f, -0.5f);
 	glTexCoord2d(1.0f, 1.0f); glVertex3f(-0.5f, 0.5f, -0.5f);
 	glTexCoord2d(1.0f, 0.0f); glVertex3f(0.5f, 0.5f, -0.5f);
-	
+
 	// face direita
 	glTexCoord2d(0.0f, 0.0f); glVertex3f(0.5f, -0.5f, 0.5f);
 	glTexCoord2d(0.0f, 1.0f); glVertex3f(0.5f, -0.5f, -0.5f);
@@ -620,15 +624,15 @@ void CScene1::DrawCube(float pX, float pY, float pZ,
 
 	// face baixo
 	glTexCoord2d(0.0f, 0.0f); glVertex3f(-0.5f, -0.5f, -0.5f);
-	glTexCoord2d(0.0f, 1.0f); glVertex3f( 0.5f, -0.5f, -0.5f);
-	glTexCoord2d(1.0f, 1.0f); glVertex3f( 0.5f, -0.5f,  0.5f);
-	glTexCoord2d(1.0f, 0.0f); glVertex3f(-0.5f, -0.5f,  0.5f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(0.5f, -0.5f, -0.5f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(0.5f, -0.5f, 0.5f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(-0.5f, -0.5f, 0.5f);
 
 	// face cima
-	glTexCoord2d(0.0f, 0.0f); glVertex3f(-0.5f,  0.5f,  0.5f);
-	glTexCoord2d(0.0f, 1.0f); glVertex3f( 0.5f,  0.5f,  0.5f);
-	glTexCoord2d(1.0f, 1.0f); glVertex3f( 0.5f,  0.5f, -0.5f);
-	glTexCoord2d(1.0f, 0.0f); glVertex3f(-0.5f,  0.5f,  -0.5f);
+	glTexCoord2d(0.0f, 0.0f); glVertex3f(-0.5f, 0.5f, 0.5f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(0.5f, 0.5f, 0.5f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(0.5f, 0.5f, -0.5f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(-0.5f, 0.5f, -0.5f);
 
 	glEnd();
 
@@ -942,7 +946,7 @@ void CScene1::DrawSnowMan(float rot, float pX, float pY, float pZ)
 	glPopMatrix();
 
 	//CABEÇA
-	glColor3ub(200, 254, 232);
+	glColor3ub(255, 255, 255);
 	glTranslatef(0.0f, 4.0f, 0.0f);
 	auxSolidSphere(2.0);
 
@@ -953,7 +957,7 @@ void CScene1::DrawSnowMan(float rot, float pX, float pY, float pZ)
 	auxSolidCone(0.5, 2.0);
 
 	//OLHOS
-	glColor3ub(255, 255, 255);
+	glColor3ub(0, 0, 255);
 	glTranslatef(1.0f, 0.5f, -0.5f);
 	auxSolidSphere(0.3);
 	glTranslatef(-2.0f, 0.5f, -0.0f);
