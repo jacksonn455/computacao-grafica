@@ -216,10 +216,6 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 	glEnd();
 	glPopMatrix();
 	
-	
-	//BONECO
-	DrawSnowMan(0.0f, 0.0, 0.0, 10);
-
 	// DESENHA O FOSSO
 	DrawCube(0.0f, 0.5f, 0.0f,
 		0.0f, 0.0f, 0.0f, 0.0f,
@@ -328,25 +324,17 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 
 	// TORRE DA MURALHA
 	glPushMatrix();
-	glTranslatef(75, -22.5f, 80);
+	glTranslatef(28, -22.5f, 80);
 	glRotatef(-90, 1, 0, 0);
 	DrawCylinder(1, 16, 46, 5);
 	glPopMatrix();
 	glPushMatrix();
-	glTranslatef(-75, -22.5f, 80);
+	glTranslatef(-28, -22.5f, 80);
 	glRotatef(-90, 1, 0, 0);
 	DrawCylinder(1, 16, 46, 5);
 	glPopMatrix();
 	glPushMatrix();
-	glTranslatef(75, -22.5f, -80);
-	glRotatef(-90, 1, 0, 0);
-	DrawCylinder(1, 16, 46, 5);
-	glPopMatrix();
-	glPushMatrix();
-	glTranslatef(-75, -22.5f, -80);
-	glRotatef(-90, 1, 0, 0);
-	DrawCylinder(1, 16, 46, 5);
-	glPopMatrix();
+
 
 	//PORTÃO
 	DrawCube(0.0f, 20.3f, 79.0f,
@@ -359,46 +347,6 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 		0.0f, 0.0f, 0.0f, 0.0f,
 		8.0, 12.0, 0.5,
 		4);
-
-	// ARVORE
-	glPushMatrix();
-	glTranslatef(-40, -4.0f, -10);
-	glRotatef(-90, 1, 0, 0);
-	DrawCylinder(1, 16, 8, 1);
-	glPopMatrix();
-	glPushMatrix();
-	glTranslatef(-40, 8, -10);
-	glRotatef(-90, 1, 0, 0);
-	glColor3f(0, 128, 0);
-	auxSolidCone(4, 10);
-	glPopMatrix();
-
-	glPushMatrix();
-	glColor3f(75, 54, 33);
-	glTranslatef(45, -4.0f, -10);
-	glRotatef(-90, 1, 0, 0);
-	DrawCylinder(1, 16, 8, 1);
-	glPopMatrix();
-	glPushMatrix();
-	glTranslatef(45, 8, -10);
-	glRotatef(-90, 1, 0, 0);
-	glColor3f(0, 128, 0);
-	auxSolidCone(4, 10);
-	glPopMatrix();
-
-	glPushMatrix();
-	glColor3f(75, 54, 33);
-	glTranslatef(45, -4.0f, 25);
-	glRotatef(-90, 1, 0, 0);
-	DrawCylinder(1, 16, 8, 1);
-	glPopMatrix();
-	glPushMatrix();
-	glTranslatef(45, 8, 25);
-	glRotatef(-90, 1, 0, 0);
-	glColor3f(0, 128, 0);
-	auxSolidCone(4, 10);
-	glPopMatrix();
-
 
 	// CHAPEU TORRE
 	glPushMatrix();
@@ -425,32 +373,6 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 	glColor3ub(10, 10, 10);
 	auxSolidCone(6, 10);
 	glPopMatrix();
-
-	// CHAPEU TORRE MURALHA
-	glPushMatrix();
-	glTranslatef(75, 46, 80);
-	glRotatef(-90, 1, 0, 0);
-	glColor3ub(10, 10, 10);
-	auxSolidCone(6, 20);
-	glPopMatrix();
-	glPushMatrix();
-	glTranslatef(-75, 46, 80);
-	glRotatef(-90, 1, 0, 0);
-	glColor3ub(10, 10, 10);
-	auxSolidCone(6, 20);
-	glPopMatrix();
-	glPushMatrix();
-	glTranslatef(75, 46, -80);
-	glRotatef(-90, 1, 0, 0);
-	glColor3ub(10, 10, 10);
-	auxSolidCone(6, 20);
-	glPopMatrix();
-	glPushMatrix();
-	glTranslatef(-75, 46, -80);
-	glRotatef(-90, 1, 0, 0);
-	glColor3ub(10, 10, 10);
-	auxSolidCone(6, 20);
-	glPopMatrix();
 	
 	//telhado castelo
 	glPushMatrix();
@@ -460,8 +382,6 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 	auxSolidCone(18, 20);
 	glPopMatrix();
 
-	//BONECO
-	DrawSnowMan(0.0f, 0.0, 0.0, 10);
 	
 	glDisable(GL_LIGHT0);	// Desliga a lâmpada
 	glDisable(GL_LIGHTING);	// Desabilita iluminação
@@ -999,62 +919,4 @@ Vec3 CScene1::CalculateTriangleNormalVector(Vec3 v1, Vec3 v2, Vec3 v3)
 	NormalizedVector.z = (normal.z / magnitude);
 
 	return NormalizedVector;
-}
-
-//BONECO
-void CScene1::DrawSnowMan(float rot, float pX, float pY, float pZ)
-{
-	glPushMatrix();
-	glTranslatef(-50, 5.0f, 30);
-	glRotatef(360, 1, 0, 0);
-
-	glColor3ub(255, 255, 255);
-	glPushMatrix();
-
-	//PERNAS
-	glTranslatef(0.0f, 0.0f, 0.0f);
-	auxSolidSphere(5.0);
-
-	//TRONCO
-	glTranslatef(0.0f, 6.0f, 0.0f);
-	auxSolidSphere(3.0);
-
-	//BOTOES DA CAMISA
-	glPushMatrix();
-	glColor3f(1.0f, 0.0f, 0.9f);
-	glTranslatef(0.0f, 1.0f, 3.0f);
-	auxSolidSphere(0.5);
-
-	glTranslatef(0.0f, -1.5f, 0.0f);
-	auxSolidSphere(0.5);
-	glPopMatrix();
-
-	//CABEÇA
-	glColor3ub(255, 255, 255);
-	glTranslatef(0.0f, 4.0f, 0.0f);
-	auxSolidSphere(2.0);
-
-	//NARIZ
-	glPushMatrix();
-	glColor3ub(200, 128, 0);
-	glTranslatef(0.0f, 0.0f, 2.0f);
-	auxSolidCone(0.5, 2.0);
-
-	//OLHOS
-	glColor3ub(0, 0, 255);
-	glTranslatef(1.0f, 0.5f, -0.5f);
-	auxSolidSphere(0.3);
-	glTranslatef(-2.0f, 0.5f, -0.0f);
-	auxSolidSphere(0.3);
-	glPopMatrix();
-
-	//CHAPEU
-	glColor3ub(0, 0, 255);
-	glTranslatef(0.0f, 1.0f, 0.0f);
-	auxSolidCylinder(2.5f, 0.8f);
-	glTranslatef(0.0f, 2.0f, 0.0f);
-	auxSolidCylinder(2.0f, 2.0f);
-
-	glPopMatrix();
-	glPopMatrix();
 }

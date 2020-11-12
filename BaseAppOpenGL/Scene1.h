@@ -60,9 +60,6 @@ public:
 		float sX = 1.0f, float sY = 1.0f, float sZ = 1.0f,
 	    int texID = -1);
 
-	void DrawSnowMan(float rot, float pX, float pY, float pZ);
-	//void CreateSkyBox(float x, float y, float z, float width, float height, float length);
-
 private:
 
 	bool	keys[256];		// Array usado para rotinas do teclado
