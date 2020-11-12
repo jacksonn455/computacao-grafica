@@ -10,7 +10,7 @@ Computação Gráfica
 Cena do jogo Age of Mythology Extended Edition Tale of the Dragon
 ===============================================
 ![](https://github.com/jacksonn455/computacao-grafica/blob/master/thumbnail_Age%20of%20Mythology%20Extended%20Edition01.png)
-![](https://github.com/jacksonn455/computacao-grafica/blob/master/thumbnail_Age%20of%20Mythology%20Extended%20Edition02.png)
+![](https://github.com/jacksonn455/computacao-grafica/blob/master/cor%20parecida.png)
 --------------------
 
 Cena refeita para o trabalho final
