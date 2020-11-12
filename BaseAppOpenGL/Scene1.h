@@ -7,6 +7,12 @@
 #include "CCamera.h"
 #include "CModel_3DS.h"
 #include <vector>
+#include "GL.H"
+#include "GLU.H"
+#include "glut.h"
+#include "GLAux.h"
+#include "math.h"
+
 
 class Vec3
 {

@@ -1,4 +1,9 @@
 #include "Scene1.h"
+#include "GL.H"
+#include "GLU.H"
+#include "glut.h"
+#include "GLAux.h"
+#include "math.h"
 
 
 CScene1::CScene1()
@@ -24,7 +29,7 @@ CScene1::CScene1()
 	pTexture = new CTexture();
 	pTexture->CreateTextureLinear(0, "../Scene1/P1.jpg");
 	pTexture->CreateTextureLinear(1, "../Scene1/frozen.jpg");
-	pTexture->CreateTextureLinear(2, "../Scene1/floorSnow.jpg");
+	pTexture->CreateTextureLinear(2, "../Scene1/roof_01.bmp");
 	pTexture->CreateTextureMipMap(3, "../Scene1/neve.bmp");
 	pTexture->CreateTextureMipMap(4, "../Scene1/door.jpg");
 	pTexture->CreateTextureMipMap(5, "../Scene1/sangue1.png");
@@ -321,6 +326,28 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 	DrawCylinder(1, 16, 22, 5);
 	glPopMatrix();
 
+	// TORRE DA MURALHA
+	glPushMatrix();
+	glTranslatef(75, -22.5f, 80);
+	glRotatef(-90, 1, 0, 0);
+	DrawCylinder(1, 16, 46, 5);
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-75, -22.5f, 80);
+	glRotatef(-90, 1, 0, 0);
+	DrawCylinder(1, 16, 46, 5);
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(75, -22.5f, -80);
+	glRotatef(-90, 1, 0, 0);
+	DrawCylinder(1, 16, 46, 5);
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-75, -22.5f, -80);
+	glRotatef(-90, 1, 0, 0);
+	DrawCylinder(1, 16, 46, 5);
+	glPopMatrix();
+
 	//PORTÃO
 	DrawCube(0.0f, 20.3f, 79.0f,
 		0.0f, 0.0f, 0.0f, 0.0f,
@@ -372,6 +399,7 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 	auxSolidCone(4, 10);
 	glPopMatrix();
 
+
 	// CHAPEU TORRE
 	glPushMatrix();
 	glTranslatef(20, 24.5, 20);
@@ -397,10 +425,36 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 	glColor3ub(10, 10, 10);
 	auxSolidCone(6, 10);
 	glPopMatrix();
+
+	// CHAPEU TORRE MURALHA
+	glPushMatrix();
+	glTranslatef(75, 46, 80);
+	glRotatef(-90, 1, 0, 0);
+	glColor3ub(10, 10, 10);
+	auxSolidCone(6, 20);
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-75, 46, 80);
+	glRotatef(-90, 1, 0, 0);
+	glColor3ub(10, 10, 10);
+	auxSolidCone(6, 20);
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(75, 46, -80);
+	glRotatef(-90, 1, 0, 0);
+	glColor3ub(10, 10, 10);
+	auxSolidCone(6, 20);
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-75, 46, -80);
+	glRotatef(-90, 1, 0, 0);
+	glColor3ub(10, 10, 10);
+	auxSolidCone(6, 20);
+	glPopMatrix();
 	
 	//telhado castelo
 	glPushMatrix();
-	glTranslatef(0, 30.3, 0);
+	glTranslatef(0, 30.4, 0);
 	glRotatef(-90, 1, 0, 0);
 	glColor3ub(10, 10, 10);
 	auxSolidCone(18, 20);
