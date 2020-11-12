@@ -22,7 +22,7 @@ CScene1::CScene1()
 
 	// Cria gerenciador de mapeamento de texturas
 	pTexture = new CTexture();
-	pTexture->CreateTextureLinear(0, "../Scene1/floorSnow.jpg");
+	pTexture->CreateTextureLinear(0, "../Scene1/P1.jpg");
 	pTexture->CreateTextureLinear(1, "../Scene1/frozen.jpg");
 	pTexture->CreateTextureLinear(2, "../Scene1/floorSnow.jpg");
 	pTexture->CreateTextureMipMap(3, "../Scene1/neve.bmp");
@@ -151,6 +151,7 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 	LightPosition[1] = fPosY;
 	LightPosition[2] = fPosZ;
 
+
 	// Desenha a lâmpada
 	glColor3f(1.0f, 1.0f, 1.0f);
 	glPushMatrix();
@@ -159,7 +160,7 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 	glPopMatrix();
 
 	glEnable(GL_LIGHTING);	// Habilita iluminação
-
+	
 	// Definindo as propriedades da fonte de luz	
 	glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
@@ -167,6 +168,7 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 	glLightfv(GL_LIGHT0, GL_POSITION, LightPosition);
 
 	glEnable(GL_LIGHT0); // Liga a lâmpada 0
+	
 
 	fAngle += 0.5f;
 	if (fAngle >= 360.0f)
@@ -183,10 +185,19 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, MatSpecular);
 	glMateriali(GL_FRONT, GL_SHININESS, 128);
 
-
 	glEnable(GL_TEXTURE_2D);
-
 	glColor3f(1.0, 1.0, 1.0); // Define a cor atual
+
+	// Desenha neblina
+	GLfloat fogColor[4] = { 0.5, 0.5, 0.5, 1.0 };
+	glEnable(GL_FOG);
+	glHint(GL_FOG_HINT, GL_NICEST);
+	glFogfv(GL_FOG_COLOR, fogColor);
+	glFogf(GL_FOG_START, 1.0f);
+	glFogf(GL_FOG_END, 20.0f);
+	glFogi(GL_FOG_MODE, GL_EXP);
+	glFogf(GL_FOG_DENSITY, 0.5f);
+	glDisable(GL_FOG);	
 
 	// Desenha a neve 
 	glPushMatrix();
@@ -199,7 +210,8 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 	glTexCoord2d(0.0f, 2.0f); glVertex3f(-100.0f, 0.0f, -100.0f);
 	glEnd();
 	glPopMatrix();
-
+	
+	
 	//BONECO
 	DrawSnowMan(0.0f, 0.0, 0.0, 10);
 
@@ -246,6 +258,24 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 		30.0, 20.0, 2.0,
 		2);
 
+	//DESENHA AS PAREDES SEGUNDO ANDAR
+	DrawCube(-15.0f, 20.5f, 0.0f,
+		0.0f, 0.0f, 0.0f, 0.0f,
+		2.0, 20.0, 30.0,
+		2);
+	DrawCube(15.0f, 20.5f, 0.0f,
+		0.0f, 0.0f, 0.0f, 0.0f,
+		2.0, 20.0, 30.0,
+		2);
+	DrawCube(0.0f, 20.5f, -15.0f,
+		0.0f, 0.0f, 0.0f, 0.0f,
+		30.0, 20.0, 2.0,
+		2);
+	DrawCube(0.0f, 20.5f, 15.0f,
+		0.0f, 0.0f, 0.0f, 0.0f,
+		30.0, 20.0, 2.0,
+		2);
+
 	// MURALHA
 	DrawCube(-79.0f, 20.3f, 0.0f,
 		0.0f, 0.0f, 0.0f, 0.0f,
@@ -267,6 +297,7 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 		0.0f, 0.0f, 0.0f, 0.0f,
 		60, 40.0, 2.0,
 		2);
+
 
 	// TORRE
 	glPushMatrix();
@@ -366,21 +397,21 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 	glColor3ub(10, 10, 10);
 	auxSolidCone(6, 10);
 	glPopMatrix();
-
+	
 	//telhado castelo
 	glPushMatrix();
-	glTranslatef(0, 20.5, 0);
+	glTranslatef(0, 30.3, 0);
 	glRotatef(-90, 1, 0, 0);
 	glColor3ub(10, 10, 10);
-	auxSolidCone(21, 23);
+	auxSolidCone(18, 20);
 	glPopMatrix();
 
 	//BONECO
 	DrawSnowMan(0.0f, 0.0, 0.0, 10);
-
+	
 	glDisable(GL_LIGHT0);	// Desliga a lâmpada
 	glDisable(GL_LIGHTING);	// Desabilita iluminação
-
+	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//                               DESENHA OS OBJETOS DA CENA (FIM)
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -391,7 +422,6 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 	// Muda para modo de projeção ortogonal 2D
 	// OBS: Desabilite Texturas e Iluminação antes de entrar nesse modo de projeção
 	OrthoMode(0, 0, WIDTH, HEIGHT);
-
 
 	glPushMatrix();
 	glTranslatef(0.0f, HEIGHT - 100, 0.0f);	// Move 1 unidade para dentro da tela (eixo Z)

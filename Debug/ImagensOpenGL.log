@@ -1,0 +1,16 @@
+﻿ProgramaBasicoOpenGL.obj : warning LNK4075: ignorando '/EDITANDCONTINUE' devido a especificação '/SAFESEH'
+glut32.lib(glut32.dll) : error LNK2026: módulo não seguro para imagem SAFESEH.
+glut32.lib(glut32.dll) : error LNK2026: módulo não seguro para imagem SAFESEH.
+glut32.lib(glut32.dll) : error LNK2026: módulo não seguro para imagem SAFESEH.
+glut32.lib(glut32.dll) : error LNK2026: módulo não seguro para imagem SAFESEH.
+glut32.lib(glut32.dll) : error LNK2026: módulo não seguro para imagem SAFESEH.
+glut32.lib(glut32.dll) : error LNK2026: módulo não seguro para imagem SAFESEH.
+glut32.lib(glut32.dll) : error LNK2026: módulo não seguro para imagem SAFESEH.
+glut32.lib(glut32.dll) : error LNK2026: módulo não seguro para imagem SAFESEH.
+glut32.lib(glut32.dll) : error LNK2026: módulo não seguro para imagem SAFESEH.
+glut32.lib(glut32.dll) : error LNK2026: módulo não seguro para imagem SAFESEH.
+glut32.lib(glut32.dll) : error LNK2026: módulo não seguro para imagem SAFESEH.
+glut32.lib(glut32.dll) : error LNK2026: módulo não seguro para imagem SAFESEH.
+glut32.lib(glut32.dll) : error LNK2026: módulo não seguro para imagem SAFESEH.
+glut32.lib(glut32.dll) : error LNK2026: módulo não seguro para imagem SAFESEH.
+C:\BaseAppOpenGL\Debug\OpenGLBasico.exe : fatal error LNK1281: Incapaz de gerar imagem SAFESEH.
