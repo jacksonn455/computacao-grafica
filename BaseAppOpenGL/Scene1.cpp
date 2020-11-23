@@ -5,6 +5,11 @@
 #include "GLAux.h"
 #include "math.h"
 
+/*
+#include <AL/al.h>
+#include <AL/alc.h>
+#include <AL/alut.h>
+*/
 
 CScene1::CScene1()
 {
