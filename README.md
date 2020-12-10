@@ -19,7 +19,7 @@ Comparação de cenas
 
 Cena refeita para o trabalho final
 ===============================================
-![](https://github.com/jacksonn455/computacao-grafica/blob/master/cena3.png)
+![](https://github.com/jacksonn455/computacao-grafica/blob/master/Sem%20t%C3%ADtulo.png)
 ![](https://github.com/jacksonn455/computacao-grafica/blob/master/cena4.png)
 ![](https://github.com/jacksonn455/computacao-grafica/blob/master/cena1.png)
 ![](https://github.com/jacksonn455/computacao-grafica/blob/master/cena2.png)
