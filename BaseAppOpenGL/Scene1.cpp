@@ -340,6 +340,22 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 	glPopMatrix();
 	glPushMatrix();
 
+	// CHAPEU TORRE DA MURALHA
+	glPushMatrix();
+	glTranslatef(28, 45, 80);
+	glRotatef(-90, 1, 0, 0);
+	glColor3ub(10, 10, 10);
+	auxSolidCone(6, 10);
+	glPopMatrix();
+	glPushMatrix();
+	glPushMatrix();
+	glTranslatef(-28, 45, 80);
+	glRotatef(-90, 1, 0, 0);
+	glColor3ub(10, 10, 10);
+	auxSolidCone(6, 10);
+	glPopMatrix();
+	glPushMatrix();
+
 
 	//PORTÃO
 	DrawCube(0.0f, 20.3f, 79.0f,
